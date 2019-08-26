@@ -1,0 +1,67 @@
+<mat-card class="propuesta-card">
+    <mat-card-content>
+        <table class="full-width">
+            <tr>
+                <td>
+                    <mat-form-field class="ancho">
+                        <mat-label>Unidad responsable:</mat-label>
+                        <mat-select (selectionChange)="selectNombre($event.value)" [formControl]="UnidadResponsable">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let tf of unidadresponsable" [value]="tf.IdUnidad">
+                                {{tf.NomUnidad}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="ancho">
+                        <mat-label>Nombre:</mat-label>
+                        <mat-select (selectionChange)="selectNombre($event.value)" [formControl]="Nombre">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let tf of user" [value]="tf.Id">
+                                {{tf.FirstName}} {{tf.LastName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="ancho">
+                        <mat-label>Cargos:</mat-label>
+                        <mat-select (selectionChange)="selectCargo($event.value)" [formControl]="Cargo">
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let car of cargos" [value]="car.IdCargo">
+                                {{car.NomCargo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <button mat-icon-button matTooltip="Agregar regla" (click)="agregarUserCargo()">
+                        <mat-icon style="font-size: 32px; color:green;">add_circle_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="propuesta-card">
+    <mat-card-content>
+
+        <p style="color: red">{{alerta}}</p>
+
+        <table class="full-width">
+            <tr>
+                <td><strong>Unidad Responsable</strong></td>
+                <td><strong>Nombre</strong></td>
+                <td><strong>Cargo</strong></td>
+            </tr>
+            <tr *ngFor="let tf of usercargos">
+                <td>{{tf.NomUnidad}}</td>
+                <td>{{tf.FirstName}} {{tf.LastName}}</td>
+                <td>{{tf.NomCargo}}</td>
+            </tr>
+        </table>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,31 @@
+  
+  .propuesta-card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto auto auto;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+  
+  .centro{
+    text-align: center;
+  }
+
+  .izquierda{
+    text-align: left;
+  }
+  .derecha{
+    text-align: right;
+  }
+
+  .columna-width {
+    width: 20px;
+  }
+
+  .celda-width {
+    width: 60px;
+    vertical-align: center;
+  }

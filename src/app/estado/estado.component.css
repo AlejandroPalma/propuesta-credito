@@ -1,0 +1,24 @@
+.propuesta-card {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: 15px auto auto auto;
+  }
+
+.full-width {
+    width: 100%;
+  }
+
+  table.roundedCorners { 
+    border: 1px solid gainsboro;
+    border-radius: 5px; 
+    border-spacing: 0;
+    }
+  table.roundedCorners td, 
+  table.roundedCorners th { 
+    border-bottom: 1px solid gainsboro;
+    padding: 10px; 
+    }
+  table.roundedCorners tr:last-child > td {
+    border-bottom: none;
+  }

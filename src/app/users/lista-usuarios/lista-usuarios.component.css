@@ -1,0 +1,138 @@
+  
+  .form-header {
+    background-color: white;
+  }
+
+
+  .propuesta-card {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: 15px auto auto auto;
+  }
+
+  
+    .full-width {
+      width: 100%;
+    }
+
+    .full-width-input {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .fondo{
+      background-color:  rgb(255, 255, 255);
+    }
+    
+    .centro{
+      text-align: center;
+    }
+  
+    .izquierda{
+      text-align: left;
+      margin: 20px auto 5px auto;
+    }
+    .derecha{
+      text-align: right;
+    }
+  
+    .botonesMenu {
+      margin: auto 10px auto auto;
+    }
+  
+    .botonesAccion {
+      margin: auto 10px auto auto;
+      width: 150px;
+    }
+  
+    .headerfontSize{
+      font-size: 25px;
+    }
+  
+    .titlefontSize{
+      font-size: 20px;
+      text-align: left;
+    }
+  
+    .loading{
+      margin: 25px;
+    }
+  
+    .anchoInput{
+      width: 30px;
+      font: size 17;
+      text-align:right;
+    }
+  
+    .sinbordefondo {
+      background-color: white;
+      border: 0;
+    }
+  
+    .mat-row, .mat-header-row {
+      display: flex;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      align-items: center;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+  
+    .mat-table {
+      display: block;
+    }
+  
+    .mat-accordion .mat-header-row {
+      padding-left: 1.5rem;
+      padding-right: 2rem;
+      border-bottom: none;
+    }
+  
+    .mat-expansion-panel-header.mat-row {
+      border-bottom: none;
+    }
+  
+    .mat-cell, .mat-header-cell {
+      flex: 1;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+  
+    .mat-header-row {
+      min-height: 20px;
+    }
+  
+  
+    .fila{
+      background-color:ghostwhite;
+    }
+
+    table.roundedCorners { 
+      border: 1px solid gainsboro;
+      border-radius: 5px; 
+      border-spacing: 0;
+      }
+    table.roundedCorners td, 
+    table.roundedCorners th { 
+      border-bottom: 1px solid gainsboro; 
+      border-left: 1px solid gainsboro; 
+      padding: 10px; 
+      }
+    table.roundedCorners tr:last-child > td {
+      border-bottom: none;
+    } 
+  
+    .tablaAprobaciones{
+      width: 33.33%M
+    }
+
+    .text-inside-grid {
+      position: absolute;
+      left: 5px;
+      width: 60px;
+    }
+
+    mat-grid-tile {
+      background: lightblue;
+   }

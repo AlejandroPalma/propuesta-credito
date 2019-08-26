@@ -1,0 +1,28 @@
+<p class="propuesta-card">Secuencia de Estados de la propuesta</p>
+
+<mat-card class="propuesta-card">
+  <mat-card-content>
+
+    <table class="full-width roundedCorners">
+      <tr>
+        <td><strong>IdEstado</strong></td>
+        <td><strong>Estado</strong></td>
+        <td><strong>Predecesor</strong></td>
+        <td><strong>Sucesor</strong></td>
+      </tr>
+      <tr *ngFor="let es of estados">
+        <td>{{es.IdEstado}}</td>
+        <td>{{es.NomEstado}}</td>
+        <td>{{es.Predecesor}}</td>
+        <td>{{es.Sucesor}}</td>
+      </tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>
+
+<!-- NomEstado: string,
+  Predecesor: string,
+  Sucesor: string,
+  Descripcion: string,
+  Activa: boolean -->

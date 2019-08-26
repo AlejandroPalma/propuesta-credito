@@ -1,0 +1,52 @@
+<div class="propuesta-card">
+    <form [formGroup]="userForm" #userRegistrationForm="ngForm" (ngSubmit)="onSubmit(userRegistrationForm)">
+        <div class="centro">
+            <div class="centro">
+                <img src='assets/PWEB_ICON.png' width="90" height="110">
+            </div>
+            <h3>Propuestas de Crédito</h3>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;" appearance="standard">
+                <mat-label>Usuario</mat-label>
+                <input id="UserName" matInput formControlName="UserName" min="6">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;" appearance="standard">
+                <mat-label>Introduce tu contraseña</mat-label>
+                <input id="Password" matInput formControlName="Password" min="6" [type]="!hide ? 'password':'text'">
+                <mat-icon matSuffix (click)="hide = !hide">
+                    {{hide ? 'visibility' : 'visibility_off' }}
+                </mat-icon>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;" appearance="standard">
+                <mat-label>Nombre:</mat-label>
+                <input id="FirstName" matInput formControlName="FirstName" min="6">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;" appearance="standard">
+                <mat-label>Apellido:</mat-label>
+                <input id="LastName" matInput formControlName="LastName" min="6">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;" appearance="outline">
+                <mat-label>Rol del usuario:</mat-label>
+                <mat-select id="Roles" formControlName="Roles">
+                    <mat-option (onSelectionChange)="selectRole($event.value,i)"  *ngFor="let rol of roles, let i=index" [value]="rol.Id" >
+                        {{rol.Name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <button mat-stroked-button style="height: 40px; width: 91%; font-size: 25px" type="submit"
+                [disabled]="!userForm.valid">Registrar</button>
+        </div>
+    </form>
+
+</div>

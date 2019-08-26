@@ -1,0 +1,291 @@
+<div class="centro">
+  <h2>Memo de Cambios</h2>
+  <h3>Facilidad | NOMBRE DE</h3>
+</div>
+
+<mat-card class="propuesta-card">
+
+  <div style="width: 100%; text-align: right">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon style="font-size: 32px;">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Ocultar</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>remove_circle_outline</mat-icon>
+        <span>Mostrar</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <mat-card-content>
+    <table class="full-width">
+      <tr>
+        <td class="celda">
+        </td>
+        <td class="centro">
+          <h3>APROBADO</h3>
+        </td>
+        <td class="centro">
+          <h3>PROPUESTO</h3>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox style="width:30%; align-content: center"></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field style="width:100%" appearance="outline">
+            <mat-label>Monto:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="width:100%" appearance="outline">
+            <mat-label>Monto:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox style="width:30%; align-content: center"></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field style="width:100%" appearance="outline">
+            <mat-label>Saldo:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="width:100%" appearance="outline">
+            <mat-label>Saldo:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Proposito:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Proposito:</mat-label>
+            <input matInput placeholder="" type="number">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Destino de los fondos:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Destino de los fondos:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Tasa de interes:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Tasa de interes:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Comisión:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Comisión:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Forma de desembolso:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Forma de desembolso:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Garantí­a:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Garantí­a:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Detalle de la garantí­a:</mat-label>
+            <textarea matInput placeholder=""></textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Detalle de la garantí­a:</mat-label>
+            <textarea matInput placeholder=""></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fianza:</mat-label>
+            <textarea matInput placeholder=""></textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Fianza:</mat-label>
+            <textarea matInput placeholder=""></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Condiciones financieras:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Condiciones financieras:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Covenant:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Covenant:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Estado de doc. legal:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Estado de doc. legal:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+
+      </tr>
+      <tr>
+        <td class="celda">
+          <mat-checkbox></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Otras condiciones:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Otras condiciones:</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
+        </td>
+
+      </tr>
+    </table>
+
+    <table class="full-width">
+      <tr class="derecha">
+        <td style="width: 95%"> <button mat-raised-button color="primary">Guardar</button></td>
+        <td style="width: 5%"> <button mat-raised-button color="primary">Cancelar</button></td>
+      </tr>
+    </table>
+
+  </mat-card-content>
+</mat-card>
+
+
+<div><br><br></div>

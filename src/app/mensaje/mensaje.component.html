@@ -1,0 +1,13 @@
+<h3 mat-dialog-title style="text-align: center">{{tituloMsg}}</h3>
+<div mat-dialog-content>
+  <div>
+    <p><strong>{{msg}}</strong></p>
+  </div>
+  <div>
+    <br>
+  </div>
+</div>
+<div mat-dialog-actions class="derecha">
+  <button mat-button color="primary" (click)="onGuardarClick()">Si</button>
+  <button mat-button color="primary" (click)="onCerrarClick()">No</button>
+</div>

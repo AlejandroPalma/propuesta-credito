@@ -1,0 +1,34 @@
+<form class="propuesta-card" [formGroup]="userForm" #loginForm="ngForm"
+    (ngSubmit)="onSubmit(UserName.value,Password.value)">
+    <div class="centro">
+        <div class="centro">
+            <img src='assets/PWEB_ICON.png' width="90" height="110">
+        </div>
+        <h3>Propuestas de Crédito</h3>
+    </div>
+    <div>
+        <mat-form-field style="width: 90%;" appearance="standard">
+            <mat-label>Usuario</mat-label>
+            <input id="UserName" #UserName matInput formControlName="UserName" min="6">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field style="width: 90%;" appearance="standard">
+            <mat-label>Introduce tu contraseña</mat-label>
+            <input id="Password" #Password matInput formControlName="Password" min="6"
+                [type]="!hide ? 'password':'text'">
+            <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off' }}
+            </mat-icon>
+        </mat-form-field>
+    </div>
+    <div *ngIf="isLoginError">
+        <i>Credenciales incorrectas</i>
+    </div>
+    <br>
+    <div>
+        <button mat-stroked-button style="height: 40px; width: 91%; font-size: 25px" type="submit"
+            [disabled]="!userForm.valid">Siguiente
+        </button>
+    </div>
+</form>

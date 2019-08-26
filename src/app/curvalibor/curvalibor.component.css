@@ -1,0 +1,46 @@
+.propuesta-card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto auto auto;
+  }
+  
+  .example-margin {
+      margin: 0 10px;
+    }
+  
+    .full-width {
+      width: 100%;
+    }
+  
+    .izquierda{
+      text-align: left;
+    }
+
+    .derecha{
+      text-align: right;
+    }
+  
+    .botonesMenu {
+      margin: auto 5px auto auto;
+    }
+  
+    .ancho {
+      width: 250px;
+    }
+
+    .anchoInput{
+      width: 250px;
+      font: size 15;
+    }
+
+    .anchoInputM{
+      width: 30px;
+      font: size 15;
+    }
+  
+  .sinbordefondo {
+    background-color: white;
+    border: 0;
+  }
+  

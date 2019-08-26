@@ -1,0 +1,40 @@
+<mat-card class="propuesta-card">
+    <mat-card-content>
+        <table class="full-width">
+            <tr>
+                <td>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Nombre del Cargo:</mat-label>
+                        <input matInput placeholder="" [formControl]="nomCargo">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <button mat-icon-button matTooltip="Agregar regla" (click)="agregarCargo()">
+                        <mat-icon style="font-size: 32px; color:green;">add_circle_outline</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="propuesta-card">
+    <mat-card-content>
+
+        <p style="color: red">{{alerta}}</p>
+
+        <table class="full-width">
+            <tr>
+                <td><strong>Id</strong></td>
+                <td><strong>Nivel</strong></td>
+                <td><strong>Cargo</strong></td>
+            </tr>
+            <tr *ngFor="let tf of cargos">
+                <td>{{tf.IdCargo}}</td>
+                <td>{{tf.Nivel}}</td>
+                <td>{{tf.NomCargo}}</td>
+            </tr>
+        </table>
+
+    </mat-card-content>
+</mat-card>

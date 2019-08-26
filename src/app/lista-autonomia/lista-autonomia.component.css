@@ -1,0 +1,36 @@
+
+.full-width {
+    width: 100%;
+  }
+  
+
+.propuesta-card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto auto auto;
+  }
+
+  .centro{
+    text-align: center;
+  }
+
+  .izquierda{
+    text-align: left;
+    margin: 20px auto 5px auto;
+  }
+  .derecha{
+    text-align: right;
+  }
+
+  .botonesMenu {
+    margin: auto 3px auto auto;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:ghostwhite
+  }
+
+.mat-row:nth-child(odd){
+    background-color:white;
+}

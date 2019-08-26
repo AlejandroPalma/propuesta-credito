@@ -1,0 +1,51 @@
+.propuesta-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 25%;
+    min-width: 300px;
+    max-height: 75%;
+    margin: 5% auto 0px auto;
+    
+  }
+
+  .full-width {
+    width: 100%;
+  }
+  
+  .centro{
+    text-align: center;
+    
+  }
+
+  .anchoBoton{
+    width: 100%;
+    font-size: 18px;
+    text-align-last: center;
+  }
+
+  .anchoBotonCuenta{
+    width: 100%;
+    font-size: 15px;
+    text-align-last: center;
+  }
+
+  .izquierda{
+    text-align: left;
+  }
+  .derecha{
+    text-align: right;
+  }
+
+
+  table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+.error {
+    color: red;
+}
+.success {
+    color: green;
+} 

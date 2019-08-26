@@ -1,0 +1,17 @@
+<h2 mat-dialog-title style="text-align: center">{{tituloMsg}}</h2>
+<div mat-dialog-content>
+    <div style="text-align: center">
+        <p><strong>{{msg}}</strong></p>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-selection-list #shoes (selectionChange)="onSelection($event, shoes.selectedOptions.selected)">
+        <mat-list-option *ngFor="let shoe of typesOfShoes" [value]='shoe.IdFianza' style="font-size: 15px">
+            {{shoe.NomFianza}}
+        </mat-list-option>
+    </mat-selection-list>
+</div>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-actions class="derecha" style="width: 100%">
+    <button mat-button color="primary" (click)="onGuardarClick()">Agregar</button>
+</div>

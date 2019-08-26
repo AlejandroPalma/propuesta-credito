@@ -1,0 +1,66 @@
+<div class="propuesta-card">
+  <h3>Usuarios registrados</h3>
+  <form [formGroup]="userForm" #userRegistrationForm="ngForm" (ngSubmit)="onSubmit(userRegistrationForm)">
+    <mat-card>
+      <mat-card-content>
+        <table class="full-width roundedCorners">
+          <tr>
+            <td>Nombre:</td>
+            <td>Apellido:</td>
+            <td>Usuario:</td>
+            <td>Contraseña temporal:</td>
+            <td>Rol del usuario:</td>
+          </tr>
+          <tr>
+            <td><input class="full-width-input sinbordefondo" id="FirstName" matInput formControlName="FirstName"
+                min="6"></td>
+            <td><input class="full-width-input sinbordefondo" id="LastName" matInput formControlName="LastName" min="6">
+            </td>
+            <td><input class="full-width-input sinbordefondo" id="UserName" matInput formControlName="UserName" min="6">
+            </td>
+            <td>
+              <input class="full-width-input sinbordefondo" id="Password" matInput formControlName="Password" min="6"
+                max="15" type="password">
+            </td>
+            <td>
+              <mat-select id="Roles" formControlName="Roles">
+                <mat-option (onSelectionChange)="selectRole($event.value,i)" *ngFor="let rol of roles, let i=index"
+                  [value]="rol.Id">
+                  {{rol.Name}}
+                </mat-option>
+              </mat-select>
+            </td>
+          </tr>
+        </table>
+        <div style="text-align: right">
+          <button mat-stroked-button style="font-size: 15px; margin-top: 5px;" type="submit"
+            [disabled]="!userForm.valid">Registrar</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+<br>
+<div class="propuesta-card">
+  <mat-card>
+    <mat-card-content>
+      <table class="full-width roundedCorners">
+        <tr>
+          <td>Nombre:</td>
+          <td>Apellido:</td>
+          <td>Usuario:</td>
+          <td>Rol del usuario:</td>
+        </tr>
+        <tr *ngFor="let us of user">
+          <td>{{us.FirstName}}</td>
+          <td>{{us.LastName}}</td>
+          <td>{{us.UserName}}</td>
+          <td>--------</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<br>
+<br>

@@ -1,0 +1,137 @@
+<ng-container>
+    <mat-drawer-container class="example-container" autosize>
+
+        <mat-toolbar class="fondo mat-elevation-z3">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>{{app_name}}</span>
+            <span class="example-spacer"> {{user.FirstName}} {{user.LastName}}</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="authService.roleMatch(['Admin'])">
+                <mat-icon class="example-icon" style="color: grey" aria-hidden="false">settings</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="estado()">
+                    <mat-icon>traffic</mat-icon>
+                    <span>Gestión de Estados</span>
+                </button>
+                <button mat-menu-item (click)="libor()" *ngIf="authService.roleMatch(['Admin','Tesoreria'])">
+                    <mat-icon>show_chart</mat-icon>
+                    <span>Curva de Tesorería</span>
+                </button>
+                <button mat-menu-item (click)="reglasExposicion()">
+                    <mat-icon>details</mat-icon>
+                    <span>Reglas Exposición</span>
+                </button>
+                <button mat-menu-item (click)="adminCargos()">
+                    <mat-icon>details</mat-icon>
+                    <span>Admin Cargos</span>
+                </button>
+                <button mat-menu-item (click)="adminUserCargos()">
+                    <mat-icon>details</mat-icon>
+                    <span>Admin Usuarios Cargos</span>
+                </button>
+                <button mat-menu-item (click)="adminCuadroAutonomias()">
+                    <mat-icon>details</mat-icon>
+                    <span>Cuadro Autonomías</span>
+                </button>
+                <button mat-menu-item (click)="adminUsuarios()">
+                    <mat-icon>details</mat-icon>
+                    <span>Registro de Usuarios</span>
+                </button>
+            </mat-menu>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu1">
+                <mat-icon class="example-icon" style="color:#1A237E">account_circle</mat-icon>
+            </button>
+            <mat-menu #menu1="matMenu" (click)="cerrarSesion()">
+                <div style="width: 200px">
+                    <!-- <p style="margin: 15px 2px 15px 10px; ">
+                        <span>
+                            <mat-icon>person_outline</mat-icon>
+                        </span>
+
+                    </p>
+                    <mat-divider></mat-divider> -->
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </div>
+            </mat-menu>
+
+
+        </mat-toolbar>
+
+        <mat-drawer #drawer class="example-sidenav  mat-elevation-z5" mode="Side">
+            <mat-action-list>
+                <div *ngIf="authService.roleMatch(['Admin', 'Confeccion'])">
+                    <mat-list-item (click)="confeccionarPropuesta()">
+                        <button mat-icon-button>
+                            <mat-icon class="example-icon" style="color:#2E7D32">add_circle</mat-icon>
+                        </button>
+                        Confeccionar
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <h2 matSubheader>Bandeja de Entrada </h2>
+                    <mat-list-item (click)="listaPropuestas()">
+                        <button mat-icon-button>
+                            <mat-icon style="color:#795548">work</mat-icon>
+                        </button>
+                        Mis propuestas
+                    </mat-list-item>
+                    <mat-list-item (click)="listaCompartidas()">
+                        <button mat-icon-button>
+                            <mat-icon style="color:#607D8B">people</mat-icon>
+                        </button>
+                        Compartido conmigo
+                    </mat-list-item>
+                    <mat-list-item (click)="listaAclaratorias()">
+                        <button mat-icon-button>
+                            <mat-icon style="color: steelblue">assignment</mat-icon>
+                        </button>
+                        Aclaratoria de preguntas
+                    </mat-list-item>
+                    <mat-list-item (click)="listaRevisor()">
+                        <button mat-icon-button>
+                            <mat-icon style="color: #311B92">assignment_turned_in</mat-icon>
+                        </button>
+                        Propuestas en revisión
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <h2 matSubheader>Bandeja de Salida </h2>
+                    <mat-list-item (click)="listaEnviadas()">
+                        <button mat-icon-button>
+                            <mat-icon>send</mat-icon>
+                        </button>
+                        Enviadas
+                    </mat-list-item>
+                </div>
+                <div *ngIf="authService.roleMatch(['Admin', 'Analisis'])">
+                    <mat-divider></mat-divider>
+                    <h2 matSubheader>Análisis y Revisión</h2>
+                    <mat-list-item (click)="listaPreguntas()">
+                        <button mat-icon-button>
+                            <mat-icon style="color: darkkhaki">comment</mat-icon>
+                        </button>
+                        Propuestas de Crédito
+                    </mat-list-item>
+                </div>
+                <div *ngIf="authService.roleMatch(['Admin','Autonomia'])">
+                    <mat-divider></mat-divider>
+                    <h2 matSubheader>Autonomía</h2>
+                    <mat-list-item (click)="listaAutonomia()">
+                        <button mat-icon-button>
+                            <mat-icon style="color:brown">check</mat-icon>
+                        </button>
+                        Toma de decisión
+                    </mat-list-item>
+                </div>
+            </mat-action-list>
+        </mat-drawer>
+
+        <router-outlet></router-outlet>
+
+    </mat-drawer-container>
+</ng-container>

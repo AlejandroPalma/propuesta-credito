@@ -1,0 +1,1137 @@
+<div *ngIf="loading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<br>
+
+<div [formGroup]="propuestaForm">
+  <p class="propuesta-card centro headerfontSize">{{ headerProp }}</p>
+  <p class="propuesta-card centro headerfontSize">{{ headerEsta }} </p>
+  <br>
+
+  <h3 class="propuesta-card">Generales de la Propuesta</h3>
+  <div formGroupName="propuesta_detalle">
+
+    <mat-expansion-panel class="propuesta-card" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Revisiones</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="full-width" cellspacing="0" cellpadding="1" border="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Fecha de propuesta:</mat-label>
+              <input matInput [matDatepicker]="picker00" [(ngModel)]="FechaPropuesta" formControlName="fechaPropuesta"
+                readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker00"></mat-datepicker-toggle>
+              <mat-datepicker #picker00></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Última revisión:</mat-label>
+              <input matInput [matDatepicker]="picker01" [(ngModel)]="FechaUltima" formControlName="fechaUltima"
+                readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker01"></mat-datepicker-toggle>
+              <mat-datepicker #picker01></mat-datepicker>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Próxima revisión:</mat-label>
+              <input matInput [matDatepicker]="picker02" [(ngModel)]="FechaProxima" formControlName="fechaProxima"
+                readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker02"></mat-datepicker-toggle>
+              <mat-datepicker #picker02></mat-datepicker>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="propuesta-card" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Datos del Grupo o Empresa Deudora</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="full-width" cellspacing="0" cellpadding="1" border="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Grupo económico/Empresa deudora:</mat-label>
+              <input matInput placeholder="" formControlName="grupoEconomico">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>N° Grupo Económico:</mat-label>
+              <input matInput placeholder="" formControlName="numGrupoEconomico">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Calificación score rate:</mat-label>
+              <input matInput placeholder="" formControlName="calificacionScoreRate">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Actividades:</mat-label>
+              <mat-select (selectionChange)="selectActividad($event.value)" formControlName="idActividad">
+                <mat-option *ngFor="let ac of actividades" [value]="ac.idActividad">
+                  {{ac.ActividadEconomica}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Sector:</mat-label>
+              <input matInput placeholder="" formControlName="sector" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Parte relacionada:</mat-label>
+              <mat-select formControlName="parteRelacionada">
+                <mat-option *ngFor="let pr of parteRela" [value]="pr.value">
+                  {{pr.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Clasificación de riesgo:</mat-label>
+              <mat-select (selectionChange)="selectRiesgo($event.value)" formControlName="clasificacionRiesgo">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let cr of clasiRiesgo" [value]="cr.IdRiesgo">
+                  {{cr.NomRiesgo}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Provisión mí­nima SIB:</mat-label>
+              <input matInput placeholder="" formControlName="provisionSIB" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Provisión NIIF:</mat-label>
+              <input matInput placeholder="" formControlName="provisionNIIF">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Unidad responsable:</mat-label>
+              <mat-select (selectionChange)="selectUnidad($event.value)" formControlName="unidadResponsable">
+                <mat-option *ngFor="let ur of unidadRespon" [value]="ur.IdUnidad">{{ur.NomUnidad}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Centro de costo:</mat-label>
+              <input matInput placeholder="" formControlName="centroCosto" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Ejecutivo de cuenta:</mat-label>
+              <input matInput placeholder="" formControlName="ejecutivoCuenta">
+            </mat-form-field>
+          </td>
+        </tr>
+        <!-- <tr>
+            <td colspan="3">
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Nivel de aprobación:</mat-label>
+                <mat-select (selectionChange)="selectNivelAprobacion($event.value)" formControlName="aprobacionControl">
+                  <mat-option *ngFor="let na of cuadroA" [value]="na.IdGrupoCargo">
+                    {{na.NomCargoA}} - {{na.NomCargoB}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr> -->
+      </table>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="propuesta-card" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Riesgo Consolidado</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="full-width roundedCorners">
+        <tr>
+          <th class="headerE"></th>
+          <th><b>Propuesta Actual | Riesgo Propuesto</b></th>
+          <th><b>Propuesta Anterior | Riesgo Aprobado</b></th>
+          <th><b>Diferencia</b></th>
+        </tr>
+        <tr>
+          <td class="headerE">Total de Facilidades</td>
+          <td class="derecha">{{prop0F1C1}}</td>
+          <td class="derecha">{{prop0F1C2}}</td>
+          <td class="derecha">{{prop0F1C3}}</td>
+        </tr>
+        <tr>
+          <td class="headerE">Total Prendario</td>
+          <td class="derecha">{{prop0F2C1}}</td>
+          <td class="derecha">{{prop0F2C2}}</td>
+          <td class="derecha">{{prop0F2C3}}</td>
+        </tr>
+        <tr>
+          <td class="headerE">Exposición neta</td>
+          <td class="derecha">{{prop0F3C1}}</td>
+          <td class="derecha">{{prop0F3C2}}</td>
+          <td class="derecha">{{prop0F3C3}}</td>
+        </tr>
+      </table>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="verDetalles()">Ver detalles</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="propuesta-card" [expanded]="true" *ngIf="showVerDetalle">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Detalle de Facilidades</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="full-width roundedCorners">
+        <tr>
+          <th><b>Deudor</b></th>
+          <th><b>Tipo de Facilidad</b></th>
+          <th><b>Propuesta</b></th>
+          <th><b>Riesgo Aprobado</b></th>
+          <th><b>Saldo/Utilización</b></th>
+          <th><b>Riesgo Propuesto</b></th>
+          <th><b>Variación</b></th>
+        </tr>
+        <tr *ngFor="let facilidad of datosResumen; let i=index">
+          <td class="headerD">{{facilidad.Deudor}}</td>
+          <td class="centro">{{facilidad.Propuesta}}</td>
+          <td class="centro">{{facilidad.TipoFacilidad}}</td>
+          <td class="derecha">{{facilidad.RiesgoAprobado}}</td>
+          <td class="derecha">{{facilidad.SaldoUtilizacion}}</td>
+          <td class="derecha">{{facilidad.RiesgoPropuesto}}</td>
+          <td class="derecha">{{facilidad.Variacion}}</td>
+        </tr>
+        <tr class="fila">
+          <td class="headerD">Total de Facilidades</td>
+          <td class="derecha"></td>
+          <td class="derecha"></td>
+          <td class="derecha">{{TotalRiesgoAprobado}}</td>
+          <td class="derecha">{{TotalSaldoUtilizado}}</td>
+          <td class="derecha">{{TotalRiesgoPropuesto}}</td>
+          <td class="derecha">{{TotalVariacion}}</td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+
+
+  </div>
+  <!--fin del detalle propuesta -->
+
+  <div formArrayName="facilidades">
+
+    <div class="propuesta-card">
+      <span>
+        <h3 style="display: inline-block; width: 200px">Detalle de Facilidades</h3>
+        <button mat-icon-button (click)="addFacilidad_BD()">
+          <mat-icon style="font-size: 32px; color:green; display: inline-block;">add_circle_outline</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Actualizar Cálculos de Exposición" (click)="calcularE(facIndex)">
+          <mat-icon style="font-size: 32px; color:royalblue; display: inline-block;">refresh</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <mat-expansion-panel class="propuesta-card expantionColor"
+      *ngFor="let fac of propuestaForm.get('facilidades').controls; let facIndex = index" [formGroupName]="facIndex">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Facilidad N°{{facIndex + 1}}</p>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p class="titlefontSize"></p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div style="width: 100%; text-align: right">
+        <button mat-icon-button matTooltip="Actualizar Cálculos de Exposición" (click)="calcularE(facIndex)">
+          <mat-icon style="font-size: 32px; color:royalblue;">refresh</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon style="font-size: 32px;">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openMsg(facIndex)">
+            <mat-icon>list_alt</mat-icon>
+            <span>Memo de cambio</span>
+          </button>
+          <button mat-menu-item (click)="deleteFacilidad(facIndex)">
+            <mat-icon>remove_circle_outline</mat-icon>
+            <span>Remover</span>
+          </button>
+        </mat-menu>
+      </div>
+
+      <table class="full-width">
+        <tr>
+          <td>
+            <p>DEUDOR:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Ingrese el nombre del Deudor" formControlName="deudor">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>CLIENTES MASTER:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="Ingrese los clientes master" formControlName="clienteMaster">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>MONTO/SALDO:</p>
+          </td>
+          <td>
+            <table class="full-width">
+              <tr>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Monto:</mat-label>
+                    <input matInput placeholder="" type="number" formControlName="monto">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Saldo:</mat-label>
+                    <input matInput placeholder="" type="number" formControlName="saldo">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Monto Inicial:</mat-label>
+                    <input matInput placeholder="" type="number" formControlName="montoInicial">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Última Aprobación:</mat-label>
+                    <input matInput placeholder="" type="number" formControlName="ultimaAprobacion">
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>PRIMERA APROBACIÓN:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Seleccione la fecha de la primera aprobación:</mat-label>
+              <input matInput [matDatepicker]="picker10" readonly formControlName="fechaPrimeraAprobacion"
+                (dateChange)="selectFechaPrimeraAprobacion($event)">
+              <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+              <mat-datepicker #picker10></mat-datepicker>
+            </mat-form-field>
+
+          </td>
+        </tr>
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>PROPUESTA:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select (selectionChange)="selectPropuesta($event.value, facIndex)" formControlName="propuesta"
+                placeholder="Seleccione el tipo de propuesta">
+                <mat-option *ngFor="let pro of propuesta" [value]="pro.IdTipoPropuesta">
+                  {{pro.NomTipoPropuesta}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>SUB PROPUESTA:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select (selectionChange)="selectSubPropuesta($event.value,facIndex)" formControlName="subPropuesta"
+                placeholder="Tipo Subpropuesta">
+                <mat-option *ngFor="let proCon01 of propuestaCondicion" [value]="proCon01.IdSubTipoPropuesta">
+                  {{proCon01.NomSubPropuesta}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="showDetalleCambio">
+          <td class="etiquetaFacilidad">
+            <p>DETALLE DEL CAMBIO:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <textarea matInput #input01 maxlength="2000" placeholder="" formControlName="detalleCambio"></textarea>
+              <mat-hint align="end">{{input01.value?.length || 0}}/2000</mat-hint>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="showMotivoRefinanciamiento">
+          <td>
+            <p>MOTIVOS DE REFINANCIAMIENTO:</p>
+          </td>
+          <td colspan="2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select (selectionChange)="selectTipoFacilidad($event.value,facIndex)"
+                formControlName="motivoRefinaciamiento" placeholder="Motivos del refinanciamiento" multiple>
+                <mat-option *ngFor="let mr of motivosRefinanciamiento" [value]="mr.IdMotivoRefina">
+                  {{mr.NomMotivoRefina}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>TIPO FACILIDAD:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select (selectionChange)="selectTipoFacilidad($event.value,facIndex)" formControlName="tipoFacilidad"
+                placeholder="Seleccione el tipo de Facilidad">
+                <mat-option *ngFor="let tf of tipoFacilidad" [value]="tf.IdTipoFacilidad">
+                  {{tf.NomTipoFacilidad}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>SUB TIPO FACILIDAD:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-select (selectionChange)="selectSubFacilidad($event.value,facIndex)"
+                formControlName="subTipoFacilidad" placeholder="Sub Tipo Facilidad">
+                <mat-option *ngFor="let facCon01 of facilidadCondicion" [value]="facCon01.IdSubTipoFacilidad" readonly>
+                  {{facCon01.NomSubTipoFacilidad}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <div>
+        <mat-divider></mat-divider>
+        <br>
+      </div>
+      <table class="full-width">
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>PROPÓSITOS:</p>
+          </td>
+          <td>
+            <button mat-icon-button matTooltip="Seleccione los propósitos de la facilidad"
+              (click)="dialogoProposito(fac,facIndex)">
+              <mat-icon style="font-size: 32px; color:green; display: inline-block;">add</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <div formArrayName="detalleProposito">
+        <div *ngFor="let detProposito of fac.get('detalleProposito').controls;let detPropositoIndex = index"
+          [formGroupName]="detPropositoIndex">
+          <h4 style="display: inline-block; margin-left: 15%; margin-bottom: 0px"> {{detPropositoIndex + 1}}
+            - {{detProposito.get('NomProposito').value}}</h4>
+          <button mat-icon-button style="margin-bottom: 0px" (click)="deleteDetalleProposito(fac, detPropositoIndex)">
+            <mat-icon style="font-size: 24px; color:red; display: inline-block;">cancel</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <table class="full-width">
+        <tr>
+          <td class="etiquetaFacilidad">
+            <p>DETALLE DE LOS PROPÓSITOS:</p>
+          </td>
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <textarea matInput #input01 maxlength="3000" formControlName="detallePropositos"></textarea>
+              <mat-hint align="end">{{input01.value?.length || 0}}/3000</mat-hint>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+      </div>
+
+      <div class="full-width">
+        <table class="full-width">
+          <tr>
+            <td class="etiquetaFacilidad">
+              <p>PLAZO DE LA FACILIDAD</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline" *ngIf="showPlazoAbierto">
+                <input matInput placeholder="" formControlName="plazoFacilidadAbierto" type="number"
+                  placeholder="Plazo de la facilidad">
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline" *ngIf="showPlazoCerrado">
+                <mat-select formControlName="plazoFacilidad" placeholder="Seleccione el plazo de la facilidad">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let plf of plazoFacilidad" [value]="plf.value">
+                    {{plf.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf="showPlazoDesembolso">
+            <td class="etiquetaFacilidad2">
+              <p>PLAZO DEL DESEMBOLSO:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-select (selectionChange)="calcularTasaLibor(facIndex)" formControlName="plazoDesembolso"
+                  placeholder="Seleccione el plazo del desembolso">
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let plf of plazoDesembolso" [value]="plf.value">
+                    {{plf.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf="showPlazoPrestamo">
+            <td class="etiquetaFacilidad2">
+              <p>PLAZO DEL PRESTAMO:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" formControlName="plazoPrestamo" type="number">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>CURVA DE TESORERÍA:</p>
+            </td>
+            <td>
+              <table class="full-width">
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Libor:</mat-label>
+                    <input matInput placeholder="" formControlName="libor" readonly>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Spread:</mat-label>
+                    <input matInput placeholder="" formControlName="spread" readonly>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Tasa recomendada:</mat-label>
+                    <input matInput placeholder="" formControlName="tasaRecomendada" readonly>
+                  </mat-form-field>
+                </td>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>TASA DE INTERES:</p>
+            </td>
+            <td>
+              <table class="full-width">
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Tasa actual:</mat-label>
+                    <input matInput formControlName="tasaInteres" placeholder="Ingrese la tasa actual propuesta">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Tasa previa aprobada:</mat-label>
+                    <input matInput formControlName="tasaPreviaAprobada" placeholder="Ingrese la tasa previa aprobada">
+                  </mat-form-field>
+                </td>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>COMISIONES VARIAS:</p>
+            </td>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput placeholder="" formControlName="comisionVarias">
+            </mat-form-field>
+          </tr>
+          <tr *ngIf="showComisionComex">
+            <td class="etiquetaFacilidad2">
+              <p>COMISIONES COMEX:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" formControlName="comisionComex">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>FORMA DE DESEMBOLSO:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" formControlName="formaDesembolso">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <div>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+        </div>
+
+        <table class="full-width">
+          <tr>
+            <td class="etiquetaFacilidad">
+              <p>GARANTÍAS:</p>
+            </td>
+            <td>
+              <button mat-icon-button matTooltip="Seleccione las grantìas de la facilidad"
+                (click)="dialogoGarantia(fac,facIndex)">
+                <mat-icon style="font-size: 32px; color:green; display: inline-block;">add</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div formArrayName="detalleGarantia">
+          <div *ngFor="let detGarantia of fac.get('detalleGarantia').controls;let detGarantiaIndex = index"
+            [formGroupName]="detGarantiaIndex">
+            <table class="full-width">
+              <tr>
+                <td class="etiquetaFacilidad"></td>
+                <td>
+                  <h4 style="display: inline-block; margin-bottom: 0px"> {{detGarantiaIndex + 1}} -
+                    {{detGarantia.get('NomGarantia').value}}</h4>
+                  <button mat-icon-button style="margin-bottom: 0px"
+                    (click)="deleteDetalleGarantia(fac, detGarantiaIndex)">
+                    <mat-icon style="font-size: 24px; color:red; display: inline-block;">cancel</mat-icon>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="etiquetaFacilidad"></td>
+                <td>
+                  <mat-form-field class="full-width" appearance="outline">
+                    <textarea matInput #input01 maxlength="1000" [placeholder]="detGarantia.get('NomGarantia').value"
+                      formControlName="Detalle"></textarea>
+                    <mat-hint align="end">{{input01.value?.length || 0}}/1000</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+        </div>
+
+        <table>
+          <tr *ngIf="showMontoGarantia">
+            <td class="etiquetaFacilidad2">
+              <p>MONTO GARANTÍA CUENTAS DE AHORRO/DPF:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" type="number" formControlName="montoGarantia">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf="showVentaRapida">
+            <td class="etiquetaFacilidad2">
+              <p>VALOR DE VENTA RÁPIDA:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" type="number" (change)="calcularLTV(i)" formControlName="ventaRapida">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>FECHA ÚLTIMO AVALUO:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput [matDatepicker]="picker03">
+                <mat-datepicker-toggle matSuffix [for]="picker03"></mat-datepicker-toggle>
+                <mat-datepicker #picker03></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <div>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+        </div>
+
+        <table class="full-width">
+          <tr>
+            <td class="etiquetaFacilidad">
+              <p>FIANZA:</p>
+            </td>
+            <td>
+              <button mat-icon-button matTooltip="Seleccione las FIANZAS" (click)="dialogoFianza(fac,facIndex)">
+                <mat-icon style="font-size: 32px; color:green; display: inline-block;">add</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div formArrayName="detalleFianza">
+          <div *ngFor="let detFianza of fac.get('detalleFianza').controls;let detFianzaIndex = index"
+            [formGroupName]="detFianzaIndex">
+            <h4 style="display: inline-block; margin-left: 15%; margin-bottom: 0px"> {{detFianzaIndex + 1}}
+              - {{detFianza.get('NomFianza').value}}</h4>
+            <button mat-icon-button style="margin-bottom: 0px" (click)="deleteDetalleFianza(fac, detFianzaIndex)">
+              <mat-icon style="font-size: 24px; color:red; display: inline-block;">cancel</mat-icon>
+            </button>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <textarea matInput #input01 maxlength="1000" [placeholder]="detFianza.get('NomFianza').value"
+                formControlName="Detalle"></textarea>
+              <mat-hint align="end">{{input01.value?.length || 0}}/1000</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+        </div>
+
+        <table>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>LOAN TO VALUE:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput type="number" placeholder="" formControlName="ltv">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf="showPolizaSeguro">
+            <td class="etiquetaFacilidad2">
+              <p>PÓLIZA DE SEGURO</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <input matInput placeholder="" formControlName="polizaSeguro">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>CATEGORÍA DE RIESGO AMBIENTAL Y SOCIAL:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Categoría de riesgo ambiental y social:</mat-label>
+                <mat-select formControlName="categoriaRiesgo">
+                  <mat-option *ngFor="let ras of riesgoAmbientalSocial" [value]="ras.value">
+                    {{ras.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>CONDICIONES FINANCIERAS:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Condiciones financieras:</mat-label>
+                <input matInput placeholder="" formControlName="condicionesFinancieras">
+              </mat-form-field>
+
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>COVENANT:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Covenant:</mat-label>
+                <textarea matInput #input04 maxlength="2000" placeholder="" formControlName="covenant"></textarea>
+                <mat-hint align="end">{{input04.value?.length || 0}}/2000</mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>ESTADO DE DOC. LEGAL:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Estado de doc. legal:</mat-label>
+                <input matInput placeholder="" formControlName="estadoDoclegal">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>OTRAS CONDICIONES:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Otras condiciones:</mat-label>
+                <input matInput placeholder="" formControlName="otrasCondiciones">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr *ngIf="showOpinionRiesgo">
+            <td class="etiquetaFacilidad2">
+              <p>OPINIÓN DE RIESGO (CASO REESTRUCTURACIÓN):</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Opinión de riesgo (Caso reestructuración):</mat-label>
+                <textarea matInput #input05 maxlength="2000" placeholder="" formControlName="opinionRiesgo"></textarea>
+                <mat-hint align="end">{{input05.value?.length || 0}}/2000</mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td class="etiquetaFacilidad2">
+              <p>EXCEPCIONES:</p>
+            </td>
+            <td>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Excepciones:</mat-label>
+                <textarea matInput #input05 maxlength="2000" placeholder=""></textarea>
+                <mat-hint align="end">{{input05.value?.length || 0}}/2000</mat-hint>
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Fecha de compromiso:</mat-label>
+                <input matInput [matDatepicker]="picker00" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker00"></mat-datepicker-toggle>
+                <mat-datepicker #picker00></mat-datepicker>
+              </mat-form-field>
+              <mat-label></mat-label>
+              <mat-form-field class="full-width" appearance="outline">
+                <textarea matInput placeholder="Responsable:"></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr style="visibility: hidden">
+            <td>
+              <input type="text" matInput placeholder="" formControlName="idFacilidad">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+
+    <div><br><br></div>
+
+    <div [formGroup]="revisorForm">
+      <h3 class="propuesta-card">Revisión de la propuesta</h3>
+      <mat-card class="propuesta-card">
+
+        <table class="full-width roundedCorners">
+          <tr class="izquierda">
+            <td class="tablaAprobacionesC01">Preparado Por:</td>
+            <td class="tablaAprobacionesC02">
+              <input matInput type="text" formControlName="idUsuario">
+            </td>
+            <td class="tablaAprobacionesC03">
+
+            </td>
+            <td class="tablaAprobacionesC04">
+
+            </td>
+            <td class="tablaAprobacionesC05">
+
+            </td>
+          </tr>
+          <tr class="izquierda">
+            <td class="tablaAprobacionesC01">Revisado por:</td>
+            <td class="tablaAprobacionesC02">
+              <input matInput type="text" formControlName="idRevisor" readonly>
+            </td>
+            <td class="tablaAprobacionesC03">
+              <input matInput type="text" formControlName="estadoRevision"  placeholder="Sin Revisar" readonly>
+            </td>
+            <td class="tablaAprobacionesC04">
+              <input matInput type="text" formControlName="fechaRevision" placeholder="Fecha" readonly>
+            </td>
+            <td class="tablaAprobacionesC05">
+              <input matInput type="text" placeholder="Comentarios del revisor">
+            </td>
+          </tr>
+        </table>
+      </mat-card>
+    </div>
+
+    <div><br><br></div>
+
+    <h3 class="propuesta-card">Aprobaciones</h3>
+    <mat-expansion-panel class="propuesta-card" [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p class="titlefontSize">Firmas de Instancias de Aprobación</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <table class="full-width roundedCorners" *ngIf="true">
+        <tr class="izquierda">
+          <td class="tablaAprobaciones" colspan="4">
+            <strong>Aprobaciones Autonomías Delegadas</strong>
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">VPE de Crédito y Servicios Centrales:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of vpejecutivocredito" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios del VPE de Crédito y Servicios Centrales">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">VP Crédito:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of vpcredito" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="VP Crédito">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Oficial de Créditos:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of oficialcredito" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios del Oficial de Créditos">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">VPE Negocios:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of vpejecutivonegocio" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios del VPE Negocios">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">VP Negocios:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of vpnegocio" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios del VPE Negocios">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Gerente Sectorial:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of gerenteSectorial" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios de Gte. Sectorial">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Gerente Regional:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of gerenteRegional" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios de Gte. Sectorial">
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Gerente Banca:</td>
+          <td class="tablaAprobacionesC02">
+            <mat-select>
+              <mat-option *ngFor="let usc of gerenteRelacion" [value]="usc.IdUser">
+                {{usc.FirstName}} {{usc.LastName}}
+              </mat-option>
+            </mat-select>
+          </td>
+          <td class="tablaAprobacionesC03">
+            <input matInput type="text" placeholder="Sin Decisión" readonly>
+          </td>
+          <td class="tablaAprobacionesC04">
+            <input matInput type="text" placeholder="Comentarios de Gte. Banca">
+          </td>
+        </tr>
+      </table>
+
+      <table class="full-width roundedCorners" *ngIf="false">
+        <tr class="izquierda">
+          <td class="tablaAprobaciones" colspan="4">
+            <strong>Miembros con Voz y Voto</strong>
+          </td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+        <tr class="izquierda">
+          <td class="tablaAprobacionesC01">Director:</td>
+          <td class="tablaAprobacionesC02"></td>
+          <td class="tablaAprobacionesC03">
+          </td>
+          <td class="tablaAprobacionesC04"></td>
+        </tr>
+      </table>
+    </mat-expansion-panel>
+
+    <div><br><br></div>
+
+    <div class="propuesta-card">
+      <div class="centro .full-width">
+        <button mat-raised-button color="primary" class="botonesAccion" (click)="autorizarPropuesta()">Autorizar</button>
+        <button mat-raised-button color="primary" class="botonesAccion" (click)="enviarPropuesta()">Enviar</button>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>

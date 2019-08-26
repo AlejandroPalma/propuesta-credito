@@ -1,0 +1,41 @@
+.propuesta-card {
+    /* display: flex;
+    flex-direction: column; */
+    width: 75%;
+    margin: 20px auto auto auto;
+  }
+
+  .propuesta-card02 {
+    /* display: flex;
+    flex-direction: column; */
+    width: 77%;
+    margin: 20px auto auto auto;
+  }
+/* 
+  table {
+    width: 90%;
+    margin: 20px auto auto auto;
+  } */
+
+  .mat-card-content{
+    width: 100%;
+   text-align: left;
+  }
+
+  .ancho{
+    width: 70px;
+  }
+
+  .derecha{
+    text-align: right;
+  }
+
+  .anchoInput{
+    width: 30px;
+    font: size 15;
+  }
+
+.sinbordefondo {
+  background-color: white;
+  border: 0;
+}

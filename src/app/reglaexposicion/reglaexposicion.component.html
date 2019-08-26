@@ -1,0 +1,127 @@
+<div class="propuesta-card">
+  <mat-form-field class="full-width">
+    <mat-label>Nombre del grupo de reglas:</mat-label>
+    <input matInput placeholder="">
+  </mat-form-field>
+</div>
+
+<mat-card class="propuesta-card">
+  <mat-card-content>
+    <table>
+      <tr>
+        <td>
+          <mat-form-field class="ancho">
+            <mat-label>Propuesta:</mat-label>
+            <mat-select (selectionChange)="selectPropuesta($event.value)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let pro of propuesta" [value]="pro.IdTipoPropuesta">
+                {{pro.NomTipoPropuesta}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="ancho">
+            <mat-label>Facilidad:</mat-label>
+            <mat-select (selectionChange)="selectTipoFacilidad($event.value)">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let tf of tipoFacilidad" [value]="tf.IdTipoFacilidad">
+                {{tf.NomTipoFacilidad}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Etiqueta Total:</mat-label>
+            <mat-select (selectionChange)="selectEtiqueta($event.value)">
+              <mat-option value="Total Facilidades">Total Facilidades</mat-option>
+              <mat-option value="Total Prendario">Total Prendario</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>Actual Monto/Saldo:</mat-label>
+            <mat-select (selectionChange)="selectMontoSaldoActual($event.value)">
+              <mat-option value="Monto">Monto</mat-option>
+              <mat-option value="Saldo">Saldo</mat-option>
+              <mat-option value="UltimaAprobacion">Última Aprobación</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Anterior Monto/Saldo:</mat-label>
+            <mat-select (selectionChange)="selectMontoSaldoAnterior($event.value)">
+              <mat-option value="Monto">Monto</mat-option>
+              <mat-option value="Saldo">Saldo</mat-option>
+              <mat-option value="UltimaAprobacion">Última Aprobación</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Tipo Operación Actual:</mat-label>
+            <mat-select (selectionChange)="selectOperacionActual($event.value)">
+              <mat-option value="Suma">Suma</mat-option>
+              <mat-option value="Resta">Resta</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Tipo Operación Anterior:</mat-label>
+            <mat-select (selectionChange)="selectOperacionAnterior($event.value)">
+              <mat-option value="Suma">Suma</mat-option>
+              <mat-option value="Resta">Resta</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <button mat-icon-button matTooltip="Agregar regla" (click)="agregar()">
+            <mat-icon style="font-size: 32px; color:green;">add_circle_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="propuesta-card">
+  <mat-card-content>
+
+    <p style="color: red">{{alerta}}</p>
+
+    <table class="full-width">
+      <tr>
+        <td><strong>Etiqueta Total</strong></td>
+        <td><strong>Propuesta</strong></td>
+        <td><strong>Tipo de facilidad</strong></td>
+        <td><strong>Operación Actual</strong></td>
+        <td><strong>Propuesta Actual</strong></td>
+        <td><strong>Operación Anterior</strong></td>
+        <td><strong>Propuesta Anterior</strong></td>
+      </tr>
+      <tr *ngFor="let tf of reglas">
+        <td>{{tf.TipoTotal}}</td>
+        <td>{{tf.NomTipoPropuesta}}</td>
+        <td>{{tf.NomTipoFacilidad}}</td>
+        <td>{{tf.OperacionActual}}</td>
+        <td>{{tf.ReglaSumaActual}}</td>
+        <td>{{tf.OperacionAnterior}}</td>
+        <td>{{tf.ReglaSumaAnterior}}</td>
+        <td>
+          <button mat-icon-button matTooltip="Eliminar regla" (click)="eliminarRegla(tf.IdReglaExposicion)">
+            <mat-icon style="font-size: 24px; color:red;">remove_circle_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </table>
+
+
+  </mat-card-content>
+</mat-card>
